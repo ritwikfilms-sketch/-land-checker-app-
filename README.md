@@ -5,3 +5,17 @@ input, textarea { width: 90%; padding: 10px; margin: 10px 0; border-radius: 8px;
 button { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; background: #00ffcc; font-weight: bold; margin: 5px; }
 #result { margin-top: 20px; font-size: 18px; }
 #imageResult img { margin-top: 15px; max-width: 100%; border-radius: 10px; }
+function checkLand() {
+  let size = document.getElementById("size").value;
+  let price = document.getElementById("price").value;
+  if(size === "" || price === "") { document.getElementById("result").innerHTML = "⚠️ Please fill all fields."; return; }
+  let rate = price / size;
+  let result = rate < 500 ? "🔥 Great Deal!" : rate < 1000 ? "⚖️ Average Market Value." : "⚠️ Overpriced Property.";
+  document.getElementById("result").innerHTML = result;
+}
+
+function speak(gender) {
+  const text = document.getElementById("voiceText").value;
+  if(!text) return alert("⚠️ Please enter text for voice.");
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
